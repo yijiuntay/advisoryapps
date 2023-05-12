@@ -1,17 +1,21 @@
 import React from "react";
 import signIn from "../firebase/auth/signin";
+import signUp from "../firebase/auth/signup";
 import { useRouter } from "next/navigation";
 import styles from "@/styles/Home.module.css";
 
 function Page() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [hasAccount, setHasAccount] = React.useState(true);
   const router = useRouter();
 
   const handleForm = async (event) => {
     event.preventDefault();
 
-    const { result, error } = await signIn(email, password);
+    const { result, error } = hasAccount
+      ? await signIn(email, password)
+      : await signUp(email, password);
 
     if (error) {
       return console.log(error);
@@ -19,11 +23,11 @@ function Page() {
 
     // else successful
     console.log(result);
-    return router.push("/admin");
+    return router.push("/list");
   };
 
-  const redirectToSignUp = () => {
-    return router.push("/signup");
+  const switchHasAccount = () => {
+    setHasAccount(!hasAccount);
   };
 
   return (
@@ -52,12 +56,16 @@ function Page() {
             className={styles.input}
           />
           <button type="submit" className={styles.button}>
-            Sign in
+            {hasAccount ? "Sign in" : "Sign up"}
           </button>
           <div className={styles.footer}>
-            <p>{`Don't have an account?`}</p>
-            <a onClick={redirectToSignUp} className={styles.signInSignUp}>
-              Sign up
+            <p>
+              {hasAccount
+                ? `Don't have an account?`
+                : "Already have an account?"}
+            </p>
+            <a onClick={switchHasAccount} className={styles.signInSignUp}>
+              {hasAccount ? "Sign up" : "Sign in"}
             </a>
           </div>
         </form>

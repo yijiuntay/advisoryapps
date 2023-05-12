@@ -56,6 +56,11 @@
   font-size: 16px;
 }
 
+.input:focus {
+  border: 3px solid #5551ff;
+  outline: none;
+}
+
 .button {
   height: 48px;
   font-size: 18px;
