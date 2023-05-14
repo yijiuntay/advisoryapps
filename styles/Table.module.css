@@ -1,0 +1,35 @@
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.th {
+  border: 1px solid #fff;
+  text-align: left;
+  padding: 8px;
+  background-color: #bbb;
+}
+
+.td {
+  text-align: left;
+  padding: 8px;
+}
+
+.tr {
+  cursor: pointer;
+}
+
+.tr:nth-child(even) {
+  background-color: #bbb;
+}
+
+.tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.modal {
+  padding: 1rem;
+  background: white;
+  border-radius: 0.25rem;
+  z-index: 10;
+}
