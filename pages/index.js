@@ -2,10 +2,13 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Table from "../components/Table";
 import styles from "@/styles/Home.module.css";
+import { useSession } from "next-auth/react";
 
 export default function List() {
   const router = useRouter();
   const [tableData, setTableData] = React.useState([]);
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
 
   const sampleData = [
     {
@@ -25,7 +28,7 @@ export default function List() {
     },
   ];
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem("id");
     localStorage.removeItem("token");
     router.push("/signin");
@@ -52,6 +55,20 @@ export default function List() {
   return (
     <div className={styles.main}>
       <div className={styles.topSection}>
+        <div className={styles.facebookLogin}>
+          {loading && <div className={styles.title}>Loading...</div>}
+          {session ? (
+            <>
+              <p style={{ marginBottom: "10px" }}>
+                Welcome, {session.user.name ?? session.user.email}
+              </p>
+              <br />
+              <img src={session.user.image} alt="" className={styles.avatar} />
+            </>
+          ) : (
+            <p className={styles.title}>Not Signed in with Facebook</p>
+          )}
+        </div>
         <button className={styles.logoutButton} onClick={handleLogout}>
           Logout
         </button>
