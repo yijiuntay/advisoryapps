@@ -24,6 +24,13 @@ export default function List() {
       distance: "2.5",
     },
   ];
+
+  const handleLogout = () => {
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+    router.push("/signin");
+  };
+
   React.useEffect(() => {
     //const id = localStorage.getItem("id");
     //const token = localStorage.getItem("token");
@@ -44,6 +51,11 @@ export default function List() {
 
   return (
     <div className={styles.main}>
+      <div className={styles.topSection}>
+        <button className={styles.logoutButton} onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
       <Table tableData={tableData} />
     </div>
   );

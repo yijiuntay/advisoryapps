@@ -4,3 +4,19 @@
   color: black;
   font-family: Whyte, sans-serif;
 }
+
+.topSection {
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logoutButton {
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.logoutButton:hover {
+  background-color: gray;
+}
