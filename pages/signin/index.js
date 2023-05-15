@@ -14,11 +14,12 @@ function Page() {
     const cors_api_host = "cors-anywhere.herokuapp.com";
     var cors_api_url = "https://" + cors_api_host + "/";
     try {
+      const uri = `http://interview.advisoryapps.com/index.php/login?email=${email}&password=${password}`;
       const res = await fetch(
-        `${cors_api_url}http://interview.advisoryapps.com/index.php/login?email=${email}&password=${password}`,
+        `${cors_api_url}http://interview.advisoryapps.com/index.php/login`,
         {
           method: "POST",
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify(encodeURI(uri)),
           headers: { "Content-Type": "application/json" },
         }
       );
