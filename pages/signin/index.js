@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import styles from "@/styles/Signin.module.css";
+import NextAuthLogin from "@/components/NextAuthLogin";
 
 function Page() {
   const [email, setEmail] = React.useState("");
@@ -72,6 +73,7 @@ function Page() {
           <button type="submit" className={styles.button}>
             {hasAccount ? "Sign in" : "Sign up"}
           </button>
+          <NextAuthLogin />
           <div className={styles.footer}>
             <p>
               {hasAccount

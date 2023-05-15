@@ -8,7 +8,7 @@
 .topSection {
   padding: 2rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .logoutButton {
@@ -19,4 +19,10 @@
 
 .logoutButton:hover {
   background-color: gray;
+}
+
+.facebookLogin {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
